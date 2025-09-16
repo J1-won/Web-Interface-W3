@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>City Noise Lab</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BioRhyme+Expanded:wght@200;300;400;700;800&display=swap" rel="stylesheet">
+	<style type=text/css>
+		html {
+		  font-size: 3.5rem;overflow-x:hidden;
+		  scroll-behavior: smooth;background-color: rgb(206,174,174);}
+		body,h1,h2,p,ol,ul{margin:0;padding:0;}
+		h1 {font-family: "BioRhyme Expanded", serif;
+		  font-weight: 400;font-style: normal;text-align: center;padding:100px;font-size: 1rem;}
+		.wrap {width:100%;margin:auto;position: relative;height: 80vh;}
+		.wrap img {position: absolute;}
+		.bldg3 {z-index: 1; top: 120px; left: 240px; transform: scaleX(-1);pointer-events: none;}
+	    .street {z-index: 5; top: 320px; left: 420px; pointer-events: none;}
+	    .cars {z-index: 4; top: 300px; left: 530px; cursor: pointer;}
+	    .trees2 {z-index: 3; top: 220px; left: 233px; pointer-events: none;}
+	    .bike {z-index: 6; top: 320px; left: 330px; pointer-events: none;}
+	    .moto2 {z-index: 13; top: 460px; left: 400px; cursor: pointer;}
+	    .ppl {z-index: 11; top: 360px; left: 550px;cursor: pointer; }
+	    .light {z-index: 12; top: 250px; left: 450px; pointer-events: none;}
+	    .bldg2 {z-index: 8; top: 100px;  left: 1100px;pointer-events: none;}
+	    .cu {z-index: 7; top: 300px; left: 930px; cursor: pointer;}
+	    .names2 {z-index: 10; top: 300px;left: 1380px; transform: scaleX(-1);pointer-events: none;}
+	    .name {z-index: 9; top: 180px; left: 780px; pointer-events: none;}
+	    .bldg1 {z-index: 14; top: 320px; left: 950px; pointer-events: none;}
+	    .birds {z-index: 2; top: -50px; left: 470px; cursor: pointer;}
+	    .metro {z-index: 15; top: 390px; left: 970px; cursor: pointer;}
+	    .ppl, .birds, .cars, .cu, .metro, .moto2 { transition: filter 0.1s, drop-shadow 0.2s;}
+
+		.ppl:hover,
+		.birds:hover,
+		.cars:hover,
+		.cu:hover,
+		.metro:hover,
+		.moto2:hover {
+		  filter: drop-shadow(3.5px 0 0 rgb(226, 226, 226))
+		          drop-shadow(-3.5px 0 0 rgb(226, 226, 226))
+		          drop-shadow(0 3.5px 0 rgb(226, 226, 226))
+		          drop-shadow(0 -3.5px 0 rgb(226, 226, 226))
+		}
+	</style>
+</head>
+<body>
+	<h1>
+		City Noise Lab
+	</h1>
+	<div class="wrap">
+		<img src="bldg3.png" class="bldg3" style="width:380px;">
+	    <img src="street.png" class="street" style="width:600px;">
+	    <img src="cars.png" class="cars" style="width:350px;" id="carsBtn">
+	    <img src="trees2.png" class="trees2" style="width:400px;">
+	    <img src="bike.png" class="bike" style="width:190px;">
+	    <img src="moto2.png" class="moto2" style="width:350px;" id="motoBtn">
+	    <img src="ppl.png" class="ppl" style="width:450px;" id="pplBtn">
+	    <img src="light.png" class="light" style="height:300px;">
+	    <img src="bldg2.png" class="bldg2" style="height:450px;">
+	    <img src="cu.png" class="cu" style="width:410px;" id="cuBtn">
+	    <img src="names2.png" class="names2" style="height:220px;">
+	    <img src="name.png" class="name" style="width:250px;">
+	    <img src="bldg1.png" class="bldg1" style="width:510px;">
+	    <img src="birds.png" class="birds" style="width:800px;" id="birdsBtn">
+	    <img src="metro.png" class="metro" style="height:350px;" id="metroBtn">
+	</div>
+	<audio id="pplSound" src="ppl.mov"></audio>
+	<audio id="birdsSound" src="birds.mp3"></audio>
+	<audio id="carsSound" src="cars.wav"></audio>
+	<audio id="cuSound" src="cu.wav"></audio>
+	<audio id="metroSound" src="metro.wav"></audio>
+	<audio id="motoSound" src="moto.wav"></audio>
+	<script>
+		let pplPlay = false;
+		let birdsPlay = false;
+		let carsPlay = false;
+		let cuPlay = false;
+		let metroPlay = false;
+		let motoPlay = false;
+
+		pplSound.volume = 0.8;
+	    birdsSound.volume = 0.5;
+	    carsSound.volume = 0.9;
+	    cuSound.volume = 0.4;
+	    metroSound.volume = 0.4;
+	    motoSound.volume = 0.6;
+
+		document.getElementById("pplBtn").onclick = function(){
+			if(pplPlay){
+				pplSound.pause();
+				pplPlay = false;
+			}else{
+				pplSound.play();
+				pplPlay = true;
+			}
+		}
+		document.getElementById("birdsBtn").onclick = function(){
+			if(birdsPlay){
+				birdsSound.pause();
+				birdsPlay = false;
+			}else{
+				birdsSound.play();
+				birdsPlay = true;
+			}
+		}
+
+		document.getElementById("carsBtn").onclick = function(){
+			if(carsPlay){
+				carsSound.pause();
+				carsPlay = false;
+			}else{
+				carsSound.play();
+				carsPlay = true;
+			}
+		}
+
+		document.getElementById("cuBtn").onclick = function(){
+			if(cuPlay){
+				cuSound.pause();
+				cuPlay = false;
+			}else{
+				cuSound.play();
+				cuPlay = true;
+			}
+		}
+
+		document.getElementById("metroBtn").onclick = function(){
+			if(metroPlay){
+				metroSound.pause();
+				metroPlay = false;
+			}else{
+				metroSound.play();
+				metroPlay = true;
+			}
+		}
+
+		document.getElementById("motoBtn").onclick = function(){
+			if(motoPlay){
+				motoSound.pause();
+				motoPlay = false;
+			}else{
+				motoSound.play();
+				motoPlay = true;
+			}
+		}
+	</script>
+</body>
+</html>
